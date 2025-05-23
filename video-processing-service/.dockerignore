@@ -1,0 +1,19 @@
+# Docker files
+Dockerfile
+docker-compose.yml
+
+# Documentation
+README.md
+
+# Git files
+**/.git
+**/.gitignore
+
+# IDE and files
+**/.vscode
+
+# Os files
+**/.DS_Store
+
+# Node modules
+node_modules
