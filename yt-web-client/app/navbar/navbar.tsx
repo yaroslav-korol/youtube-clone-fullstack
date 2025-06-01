@@ -7,6 +7,7 @@ import SignInOut from "./sign-in-out";
 import { onAuthStateChangedHelper } from "../utils/firebase/firebase";
 import { useEffect, useState } from "react";
 import { User } from "firebase/auth";
+import Upload from "./upload";
 
 
 export default function Navbar() {
@@ -28,7 +29,7 @@ export default function Navbar() {
                 <Image src="/youtube-logo.svg" alt="Youtube logo" width={90} height={20}/> 
             </Link>
             {
-                // TODO: Add an upload button
+                user &&  <Upload/>
             }
             <SignInOut user={user} />
         </nav>
