@@ -7,6 +7,7 @@ import {
   downloadRawVideo,
   uploadProcessedVideo
 } from './gcp-storage';
+import { isVideoNew, setVideo } from './firestore';
 
 
 // Create local directories for videos
@@ -37,8 +38,19 @@ app.post('/process-video', async (req: any, res: any) => {
     return res.status(400).send('Bad Request: Missing file name');
   }
 
-  const inputFileName = data.name;
+  const inputFileName = data.name;  // Format of <UID>-<DATE>.<EXTENSION>
   const outputFileName = `processed-${inputFileName}`;
+  const videoId = inputFileName.split('.')[0];
+
+  if (!isVideoNew(videoId)) {
+    return res.status(400).send('Bad Request: Video already processing or processed');
+  } else {
+    await setVideo(videoId, {
+      id: videoId,
+      uid: videoId.split('-')[0],
+      status: 'processing'
+    });
+  }
 
   // Download the raw video from Cloud Storage
   await downloadRawVideo(inputFileName);
@@ -58,10 +70,15 @@ app.post('/process-video', async (req: any, res: any) => {
   // Upload the processed video to Cloud Storage
   await uploadProcessedVideo(outputFileName);
 
+  await setVideo(videoId, {
+    status: 'processed',
+    filename: outputFileName
+  });
+
   await Promise.all([
     deleteRawVideo(inputFileName),
     deleteProcessedVideo(outputFileName)
-  ])
+  ]);
 
   return res.status(200).send('Video processed successfully');
 });
