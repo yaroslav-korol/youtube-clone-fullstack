@@ -14,3 +14,5 @@ export default function WatchPage() {
         </div>
     );
 }
+
+export const revalidate = 30;
