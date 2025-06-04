@@ -11,6 +11,20 @@ initializeApp();
 const firestore = new Firestore();
 const storage = new Storage();
 const rawVideoBucket = "yk-youtube-raw-videos";
+const videoCollectionId = "videos";
+const videosFetchLimit = 10; // Limit for fetching videos for rendering in UI
+
+
+// Define the Video interface
+export interface Video {
+    id?: string,
+    uid?: string,
+    filename?: string,
+    status?: "processing" | "processed",
+    title?: string,
+    description?: string
+}
+
 
 export const createUser = functions.auth.user().onCreate((user) => {
   const userInfo = {
@@ -49,4 +63,11 @@ export const generateUploadUrl = onCall({maxInstances: 1}, async (request) => {
   });
 
   return {url, fileName};
+});
+
+
+export const getVideos = onCall({maxInstances: 1}, async () => {
+  const querySnapshot =
+    await firestore.collection(videoCollectionId).limit(videosFetchLimit).get();
+  return querySnapshot.docs.map((doc) => doc.data());
 });
