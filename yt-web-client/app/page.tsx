@@ -21,3 +21,7 @@ export default async function Home() {
     </div>
   );
 }
+
+// This will revalidate the page every 30 seconds, ensuring that new videos are fetched
+// and displayed without needing to refresh the page manually.
+export const revalidate = 30;
