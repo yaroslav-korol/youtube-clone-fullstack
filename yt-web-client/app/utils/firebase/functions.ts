@@ -15,17 +15,17 @@ export interface Video {
 }
 
 export async function getVideos() {
-  const response: any = await getVideosFunction();
+  const response = await getVideosFunction();
   return response.data as Video[];
 }
 
 export async function uploadVideo(file: File) {
-    const response: any = await generateUploadUrlFunction({
+    const response = await generateUploadUrlFunction({
         fileExtension: file.name.split('.').pop()
-    });
+    }) as { data?: { url?: string } };
 
     // Upload the file to the signed URL
-    const uploadResult = await fetch(response?.data?.url, {
+    const uploadResult = await fetch(response?.data?.url ?? '', {
         method: 'PUT',
         body: file,
         headers: {
