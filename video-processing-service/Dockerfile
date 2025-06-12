@@ -1,5 +1,5 @@
 # BUILD STAGE
-FROM node:24 AS builder
+FROM node:20 AS builder
 
 # Set working directory
 WORKDIR /app
@@ -20,7 +20,7 @@ RUN npm run build
 
 
 # PRODUCTION STAGE
-FROM node:24-slim AS production
+FROM node:20-slim AS production
 
 # Install additional system tools. Remove installation files to reduce image size
 RUN apt-get update && \
@@ -53,6 +53,6 @@ EXPOSE 3000
 CMD [ "npm", "run", "serve" ]
 
 # Add metadata to the image
-LABEL   maintainer="Yaroslav Korol <yaroslav.korol@gmail.com>" \
+LABEL   maintainer="Yaroslav Korol <yaroslav.v.korol@gmail.com>" \
         version="1.0" \
         description="Dockerfile for video-processing-service"
