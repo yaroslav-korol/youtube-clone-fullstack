@@ -5,3 +5,6 @@
 # IDE directories
 .vscode/
 .idea
+
+# Text file used by git filter-repo for renaming secrets in files
+repl.txt
