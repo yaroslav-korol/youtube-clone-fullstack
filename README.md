@@ -7,11 +7,11 @@ A full-stack video-sharing web application inspired by YouTube. This project int
 <br>
 
 ## Table of Contents
-- [Features](#🔧-features)
-- [Tech Stack](#🧱-tech-stack)
-- [Architecture Overview](#🏗️-architecture-overview)
-- [Project Structure](#🗂️-project-structure)
-- [Purpose](#🎯-purpose)
+- [Features](#-features)
+- [Tech Stack](#-tech-stack)
+- [Architecture Overview](#-architecture-overview)
+- [Project Structure](#-project-structure)
+- [Purpose](#-purpose)
 
 <br>
 
