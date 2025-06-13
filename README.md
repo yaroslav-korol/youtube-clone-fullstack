@@ -47,7 +47,7 @@ A full-stack video-sharing web application inspired by YouTube. This project int
 <br>
 <br>
 
-### 🏗️ Architecture Overview
+### 🏗 Architecture Overview
 
 ```mathematica
 
@@ -78,7 +78,7 @@ User → Next.js Web Client → Firebase Functions → Firestore & GCS
 <br>
 <br>
 
-### 🗂️ Project Structure
+### 🗂 Project Structure
 ```pgsql
 .
 ├── utils/
